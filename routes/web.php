@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +20,12 @@ use App\Http\Controllers\LoginController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/', [LoginController::class, 'check'])->name('login.handle');
+Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
+
+Route::middleware('auth.admin')->prefix('admin')->group(function ()
+{
+    Route::get('/', [AdminController::class, 'index']);
+    Route::resource('users', AdminController::class);
+});
+
+Route::resource('student', StudentController::class);

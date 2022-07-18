@@ -29,6 +29,7 @@
                     @if (Route::has('login'))
                         @auth
                             <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
+                            <a href="{{ route('logout') }}" class="text-sm text-gray-700 underline">Logout</a>
                         @else
                             <a href="{{ route('login') }}" class="btn btn-primary">Login</a>
     
