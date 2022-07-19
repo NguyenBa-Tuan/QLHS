@@ -1,0 +1,17 @@
+.tab-ct{
+    display: none;
+}
+
+.tab-title{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.tab-title a{
+    margin: 0 20px;
+}
+
+.table{
+    text-align: center;
+}

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
@@ -24,8 +25,9 @@ Route::get('/logout', [LogoutController::class, 'index'])->name('logout');
 
 Route::middleware('auth.admin')->prefix('admin')->group(function ()
 {
-    Route::get('/', [AdminController::class, 'index']);
+    Route::get('/', [AdminController::class, 'index'])->name('admin');
     Route::resource('users', AdminController::class);
+    Route::resource('courses', CourseController::class);
 });
 
 Route::resource('student', StudentController::class);

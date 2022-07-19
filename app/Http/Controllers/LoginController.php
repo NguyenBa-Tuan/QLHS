@@ -23,7 +23,7 @@ class LoginController extends Controller
             $role = Auth::user()->role;
             if($role == 0) 
             {
-                return redirect()->route('users.index');
+                return redirect()->route('admin');
             }elseif($role == 1)
             {
                 return redirect()->route('student.index');

@@ -6,6 +6,22 @@
 @endif
 @section('content')
     {{-- {{dd($data)}} --}}
-    @include('admin.users')
+    <div class="tab">
+
+        <div class="container">
+            <div class="tab-title">
+                <a href="#users" class="btn btn-outline-primary">Sinh viên</a>
+                <a href="#courses" class="btn btn-outline-primary">Khóa học</a>
+            </div>
+        </div>
+        <div id="users" class="tab-ct">
+            @include('admin.users')
+        </div>
+        
+        <div id="courses" class="tab-ct">
+            @include('admin.courses');
+        </div>
+
+    </div>
 
 @endsection

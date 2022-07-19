@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateUser;
 
@@ -17,8 +18,8 @@ class AdminController extends Controller
     public function index()
     {
         $data = User::all()->where('role', 1);
-
-        return view('admin.home', compact('data'));
+        $courses = Course::all();
+        return view('admin.home', compact('data', 'courses'));
     }
 
     /**
@@ -45,7 +46,7 @@ class AdminController extends Controller
         $data['role'] = 1;
         // dd($request->all());
         User::create($data);
-        return redirect()->route('users.index');
+        return redirect()->route('admin');
     }
 
     /**
@@ -87,7 +88,7 @@ class AdminController extends Controller
         $data = $request->all();
         $data['role'] = 1;
         $user->update($data);
-        return redirect()->route('users.index');
+        return redirect()->route('admin');
 
     }
 

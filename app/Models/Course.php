@@ -13,4 +13,9 @@ class Course extends Model
         'name',
         'count_student_max',
     ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class,'register_courses', 'id');
+    }
 }

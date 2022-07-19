@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CourseRequest;
 use Illuminate\Http\Request;
+use App\Models\Course;
 
 class CourseController extends Controller
 {
@@ -14,6 +16,7 @@ class CourseController extends Controller
     public function index()
     {
         //
+        return redirect()->route('admin');
     }
 
     /**
@@ -23,7 +26,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.createCourse');
     }
 
     /**
@@ -32,9 +35,13 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CourseRequest $request)
     {
         //
+        // dd($request->all());
+        $data = $request->all();
+        Course::create($data);
+        return redirect()->route('admin');
     }
 
     /**
@@ -57,6 +64,9 @@ class CourseController extends Controller
     public function edit($id)
     {
         //
+        $data = Course::findOrFail($id);
+
+        return view('admin.updateCourse', compact('data'));
     }
 
     /**
@@ -66,9 +76,14 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CourseRequest $request, $id)
     {
         //
+        $course = Course::findOrFail($id);
+        $data = $request->all();
+        $course->update($data);
+
+        return redirect()->route('admin');
     }
 
     /**
@@ -80,5 +95,8 @@ class CourseController extends Controller
     public function destroy($id)
     {
         //
+        Course::destroy($id);
+
+        return redirect()->back();
     }
 }
